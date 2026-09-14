@@ -231,9 +231,9 @@ export function SolutionsSection({
             {/* MAIN CONTENT AREA: Bento Cards + Solution Overview Panel         */}
             {/* ---------------------------------------------------------------- */}
             <div className="flex-1 min-w-0 flex flex-col xl:flex-row items-stretch gap-6 xl:gap-7">
-              {/* CENTER / MAIN — Bento Grid of Solutions Cards */}
-              <div className="flex-1 min-w-0 flex flex-col gap-3">
-                {/* ROW 1: Primary Featured Card (Card 01 - Business Websites) */}
+              {/* CENTER / MAIN — Uniform Balanced Grid of 6 Solutions Cards */}
+              <div className="flex-1 min-w-0 grid grid-cols-1 sm:grid-cols-2 gap-4 items-stretch auto-rows-fr">
+                {/* CARD 01: Business Websites */}
                 {card1 && (
                   <SolutionCard
                     index={0}
@@ -242,66 +242,46 @@ export function SolutionsSection({
                     onSelect={setActiveIndex}
                     onHover={setHoveredIndex}
                     ariaLabel="01 — Business Websites"
-                    className="min-h-[205px] sm:min-h-[220px]"
-                    paddingClassName="p-4 sm:p-5"
+                    className="min-h-[165px] h-full"
+                    paddingClassName="p-4 sm:p-4.5"
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-5">
-                      <div className="flex-1 min-w-0 pr-1">
-                        {/* Pill Badge with Icon */}
-                        <div className="flex items-center gap-2">
-                          <div className="size-6 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
-                            <IconMonitor className="size-3.5" />
-                          </div>
-                          <span className="type-technical text-muted-foreground">
-                            01 — BUSINESS WEBSITES
-                          </span>
+                    <div className="relative z-10 max-w-[65%] sm:max-w-[60%] pointer-events-none">
+                      <div className="flex items-center gap-2">
+                        <div className="size-6 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
+                          <IconMonitor className="size-3.5" />
                         </div>
-
-                        {/* Title */}
-                        <h3
-                          className={`type-card-title mt-2 transition-colors duration-200 ${
-                            activeIndex === 0 ? "text-accent" : "text-foreground group-hover:text-accent"
-                          }`}
-                        >
-                          {card1.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="type-body-sm mt-1.5 text-muted-foreground">
-                          {card1.description}
-                        </p>
-
-                        {/* Technical Feature Tags */}
-                        <div className="mt-3 flex flex-wrap items-center gap-1.5 font-mono text-[9px] text-muted-foreground">
-                          <span className="rounded border border-border/60 bg-surface-elevated/60 px-2 py-0.5">NEXT.JS SSR</span>
-                          <span className="rounded border border-border/60 bg-surface-elevated/60 px-2 py-0.5">SUB-1S SPEED</span>
-                          <span className="rounded border border-border/60 bg-surface-elevated/60 px-2 py-0.5">100% OWNERSHIP</span>
-                        </div>
+                        <span className="type-technical-xs text-muted-foreground">
+                          01 — WEBSITES
+                        </span>
                       </div>
 
-                      {/* Dedicated Showcase Stage for Hero Laptop */}
-                      <div className="w-full sm:w-[220px] md:w-[260px] lg:w-[240px] xl:w-[310px] 2xl:w-[340px] shrink-0 flex items-center justify-center pt-2 sm:pt-0">
-                        <LaptopBrowserVisual
-                          isHovered={hoveredIndex === 0 || activeIndex === 0}
-                          className="w-full max-w-[270px] sm:max-w-[290px] xl:max-w-[340px] h-auto"
-                        />
-                      </div>
+                      <h3
+                        className={`mt-2 text-sm font-bold tracking-normal transition-colors duration-200 sm:text-[15px] ${
+                          activeIndex === 0 ? "text-accent" : "text-foreground group-hover:text-accent"
+                        }`}
+                      >
+                        {card1.title}
+                      </h3>
+
+                      <p className="type-body-sm mt-1 text-muted-foreground line-clamp-2">
+                        {card1.description}
+                      </p>
                     </div>
 
-                    {/* Bottom Action Row */}
-                    <div className="mt-3.5 pt-2.5 border-t border-border/40 flex items-center justify-between">
+                    <div className="relative z-10 mt-3 pt-1 flex items-end justify-between pointer-events-none">
                       <div className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border/80 text-foreground transition-all duration-200 group-hover:border-accent group-hover:text-accent group-hover:translate-x-0.5">
                         <IconArrowRight className="size-3" />
                       </div>
-                      <span className="type-technical-xs text-muted-foreground">
-                        DESIGN • DEVELOP • GROW
-                      </span>
                     </div>
+
+                    {/* Decorative absolute SVG in lower right */}
+                    <LaptopBrowserVisual
+                      isHovered={hoveredIndex === 0 || activeIndex === 0}
+                      className="absolute -right-2 -bottom-2 w-[118px] sm:w-[130px] h-auto pointer-events-none select-none z-0"
+                    />
                   </SolutionCard>
                 )}
 
-              {/* ROW 2: Two Secondary Bento Cells (Cards 02 & 03) */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {/* CARD 02: E-Commerce */}
                 {card2 && (
                   <SolutionCard
@@ -311,19 +291,17 @@ export function SolutionsSection({
                     onSelect={setActiveIndex}
                     onHover={setHoveredIndex}
                     ariaLabel="02 — E-Commerce"
-                    className="min-h-[160px]"
-                    paddingClassName="p-4"
+                    className="min-h-[165px] h-full"
+                    paddingClassName="p-4 sm:p-4.5"
                   >
                     <div className="relative z-10 max-w-[65%] sm:max-w-[60%] pointer-events-none">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="size-6 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
-                            <IconShoppingCart className="size-3.5" />
-                          </div>
-                          <span className="type-technical-xs text-muted-foreground">
-                            02 — E-COMMERCE
-                          </span>
+                      <div className="flex items-center gap-2">
+                        <div className="size-6 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
+                          <IconShoppingCart className="size-3.5" />
                         </div>
+                        <span className="type-technical-xs text-muted-foreground">
+                          02 — E-COMMERCE
+                        </span>
                       </div>
 
                       <h3
@@ -334,7 +312,7 @@ export function SolutionsSection({
                         {card2.title}
                       </h3>
 
-                      <p className="type-body-sm mt-1 text-muted-foreground">
+                      <p className="type-body-sm mt-1 text-muted-foreground line-clamp-2">
                         {card2.description}
                       </p>
                     </div>
@@ -362,19 +340,17 @@ export function SolutionsSection({
                     onSelect={setActiveIndex}
                     onHover={setHoveredIndex}
                     ariaLabel="03 — Business Tools"
-                    className="min-h-[160px]"
-                    paddingClassName="p-4"
+                    className="min-h-[165px] h-full"
+                    paddingClassName="p-4 sm:p-4.5"
                   >
                     <div className="relative z-10 max-w-[65%] sm:max-w-[60%] pointer-events-none">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <div className="size-6 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
-                            <IconLayoutDashboard className="size-3.5" />
-                          </div>
-                          <span className="type-technical-xs text-muted-foreground">
-                            03 — BUSINESS TOOLS
-                          </span>
+                      <div className="flex items-center gap-2">
+                        <div className="size-6 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
+                          <IconLayoutDashboard className="size-3.5" />
                         </div>
+                        <span className="type-technical-xs text-muted-foreground">
+                          03 — BUSINESS TOOLS
+                        </span>
                       </div>
 
                       <h3
@@ -385,7 +361,7 @@ export function SolutionsSection({
                         {card3.title}
                       </h3>
 
-                      <p className="type-body-sm mt-1 text-muted-foreground">
+                      <p className="type-body-sm mt-1 text-muted-foreground line-clamp-2">
                         {card3.description}
                       </p>
                     </div>
@@ -403,10 +379,7 @@ export function SolutionsSection({
                     />
                   </SolutionCard>
                 )}
-              </div>
 
-              {/* ROW 3: Three Supporting Bento Cells (Cards 04, 05, 06) */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {/* CARD 04: Landing Pages */}
                 {card4 && (
                   <SolutionCard
@@ -416,40 +389,42 @@ export function SolutionsSection({
                     onSelect={setActiveIndex}
                     onHover={setHoveredIndex}
                     ariaLabel="04 — Campaigns"
-                    className="min-h-[145px]"
-                    paddingClassName="p-3.5"
+                    className="min-h-[165px] h-full"
+                    paddingClassName="p-4 sm:p-4.5"
                   >
-                    <div className="relative z-10 max-w-[75%] pointer-events-none">
-                      <div className="flex items-center gap-1.5">
-                        <div className="size-5 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
-                          <IconCrosshair className="size-3" />
+                    <div className="relative z-10 max-w-[65%] sm:max-w-[60%] pointer-events-none">
+                      <div className="flex items-center gap-2">
+                        <div className="size-6 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
+                          <IconCrosshair className="size-3.5" />
                         </div>
                         <span className="type-technical-xs text-muted-foreground">
                           04 — CAMPAIGNS
                         </span>
                       </div>
+
                       <h3
-                        className={`mt-2 text-xs font-bold tracking-normal transition-colors duration-200 sm:text-[13.5px] ${
+                        className={`mt-2 text-sm font-bold tracking-normal transition-colors duration-200 sm:text-[15px] ${
                           activeIndex === 3 ? "text-accent" : "text-foreground group-hover:text-accent"
                         }`}
                       >
                         {card4.title}
                       </h3>
-                      <p className="type-body-xs mt-1 text-muted-foreground line-clamp-2">
+
+                      <p className="type-body-sm mt-1 text-muted-foreground line-clamp-2">
                         {card4.description}
                       </p>
                     </div>
 
-                    <div className="relative z-10 mt-2.5 pt-1 flex items-end justify-between pointer-events-none">
-                      <div className="flex size-5.5 shrink-0 items-center justify-center rounded-full border border-border/80 text-foreground transition-all duration-200 group-hover:border-accent group-hover:text-accent">
-                        <IconArrowRight className="size-2.5" />
+                    <div className="relative z-10 mt-3 pt-1 flex items-end justify-between pointer-events-none">
+                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border/80 text-foreground transition-all duration-200 group-hover:border-accent group-hover:text-accent group-hover:translate-x-0.5">
+                        <IconArrowRight className="size-3" />
                       </div>
                     </div>
 
                     {/* Decorative absolute SVG in lower right */}
                     <CampaignConversionVisual
                       isHovered={hoveredIndex === 3 || activeIndex === 3}
-                      className="absolute -right-2 -bottom-1.5 w-[88px] sm:w-[98px] h-auto pointer-events-none select-none z-0"
+                      className="absolute -right-2 -bottom-2 w-[118px] sm:w-[130px] h-auto pointer-events-none select-none z-0"
                     />
                   </SolutionCard>
                 )}
@@ -463,40 +438,42 @@ export function SolutionsSection({
                     onSelect={setActiveIndex}
                     onHover={setHoveredIndex}
                     ariaLabel="05 — Modernization"
-                    className="min-h-[145px]"
-                    paddingClassName="p-3.5"
+                    className="min-h-[165px] h-full"
+                    paddingClassName="p-4 sm:p-4.5"
                   >
-                    <div className="relative z-10 max-w-[75%] pointer-events-none">
-                      <div className="flex items-center gap-1.5">
-                        <div className="size-5 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
-                          <IconLayers className="size-3" />
+                    <div className="relative z-10 max-w-[65%] sm:max-w-[60%] pointer-events-none">
+                      <div className="flex items-center gap-2">
+                        <div className="size-6 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
+                          <IconLayers className="size-3.5" />
                         </div>
                         <span className="type-technical-xs text-muted-foreground">
                           05 — MODERNIZATION
                         </span>
                       </div>
+
                       <h3
-                        className={`mt-2 text-xs font-bold tracking-normal transition-colors duration-200 sm:text-[13.5px] ${
+                        className={`mt-2 text-sm font-bold tracking-normal transition-colors duration-200 sm:text-[15px] ${
                           activeIndex === 4 ? "text-accent" : "text-foreground group-hover:text-accent"
                         }`}
                       >
                         {card5.title}
                       </h3>
-                      <p className="type-body-xs mt-1 text-muted-foreground line-clamp-2">
+
+                      <p className="type-body-sm mt-1 text-muted-foreground line-clamp-2">
                         {card5.description}
                       </p>
                     </div>
 
-                    <div className="relative z-10 mt-2.5 pt-1 flex items-end justify-between pointer-events-none">
-                      <div className="flex size-5.5 shrink-0 items-center justify-center rounded-full border border-border/80 text-foreground transition-all duration-200 group-hover:border-accent group-hover:text-accent">
-                        <IconArrowRight className="size-2.5" />
+                    <div className="relative z-10 mt-3 pt-1 flex items-end justify-between pointer-events-none">
+                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border/80 text-foreground transition-all duration-200 group-hover:border-accent group-hover:text-accent group-hover:translate-x-0.5">
+                        <IconArrowRight className="size-3" />
                       </div>
                     </div>
 
                     {/* Decorative absolute SVG in lower right */}
                     <ModernizationLayersVisual
                       isHovered={hoveredIndex === 4 || activeIndex === 4}
-                      className="absolute -right-2 -bottom-1.5 w-[88px] sm:w-[98px] h-auto pointer-events-none select-none z-0"
+                      className="absolute -right-2 -bottom-2 w-[118px] sm:w-[130px] h-auto pointer-events-none select-none z-0"
                     />
                   </SolutionCard>
                 )}
@@ -510,40 +487,42 @@ export function SolutionsSection({
                     onSelect={setActiveIndex}
                     onHover={setHoveredIndex}
                     ariaLabel="06 — Support & SLA"
-                    className="min-h-[145px]"
-                    paddingClassName="p-3.5"
+                    className="min-h-[165px] h-full"
+                    paddingClassName="p-4 sm:p-4.5"
                   >
-                    <div className="relative z-10 max-w-[75%] pointer-events-none">
-                      <div className="flex items-center gap-1.5">
-                        <div className="size-5 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
-                          <IconShieldCheck className="size-3" />
+                    <div className="relative z-10 max-w-[65%] sm:max-w-[60%] pointer-events-none">
+                      <div className="flex items-center gap-2">
+                        <div className="size-6 rounded border border-accent/40 bg-accent/15 flex items-center justify-center text-accent">
+                          <IconShieldCheck className="size-3.5" />
                         </div>
                         <span className="type-technical-xs text-muted-foreground">
                           06 — SUPPORT & SLA
                         </span>
                       </div>
+
                       <h3
-                        className={`mt-2 text-xs font-bold tracking-normal transition-colors duration-200 sm:text-[13.5px] ${
+                        className={`mt-2 text-sm font-bold tracking-normal transition-colors duration-200 sm:text-[15px] ${
                           activeIndex === 5 ? "text-accent" : "text-foreground group-hover:text-accent"
                         }`}
                       >
                         {card6.title}
                       </h3>
-                      <p className="type-body-xs mt-1 text-muted-foreground line-clamp-2">
+
+                      <p className="type-body-sm mt-1 text-muted-foreground line-clamp-2">
                         {card6.description}
                       </p>
                     </div>
 
-                    <div className="relative z-10 mt-2.5 pt-1 flex items-end justify-between pointer-events-none">
-                      <div className="flex size-5.5 shrink-0 items-center justify-center rounded-full border border-border/80 text-foreground transition-all duration-200 group-hover:border-accent group-hover:text-accent">
-                        <IconArrowRight className="size-2.5" />
+                    <div className="relative z-10 mt-3 pt-1 flex items-end justify-between pointer-events-none">
+                      <div className="flex size-6 shrink-0 items-center justify-center rounded-full border border-border/80 text-foreground transition-all duration-200 group-hover:border-accent group-hover:text-accent group-hover:translate-x-0.5">
+                        <IconArrowRight className="size-3" />
                       </div>
                     </div>
 
                     {/* Decorative absolute SVG in lower right */}
                     <SupportShieldVisual
                       isHovered={hoveredIndex === 5 || activeIndex === 5}
-                      className="absolute -right-2 -bottom-1.5 w-[88px] sm:w-[98px] h-auto pointer-events-none select-none z-0"
+                      className="absolute -right-2 -bottom-2 w-[118px] sm:w-[130px] h-auto pointer-events-none select-none z-0"
                     />
                   </SolutionCard>
                 )}
@@ -654,10 +633,9 @@ export function SolutionsSection({
               </div>
             </div>
           </div>
-        </div>
-      </SectionReveal>
-    </Container>
-    <Container className="px-6 md:px-16 mt-10 md:mt-12">
+        </SectionReveal>
+      </Container>
+      <Container className="px-6 md:px-16 mt-10 md:mt-12">
       <Divider />
     </Container>
   </section>

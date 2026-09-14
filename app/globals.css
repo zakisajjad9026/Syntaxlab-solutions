@@ -283,7 +283,24 @@ section[id] {
 @media (prefers-reduced-motion: reduce) {
 	.aurora-layer-primary,
 	.aurora-layer-secondary,
-	.aurora-layer-ambient {
+	.aurora-layer-ambient,
+	.animate-marquee {
 		animation: none !important;
 	}
 }
+
+/* Continuous High-Performance Infinite Marquee */
+@keyframes marquee {
+	0% {
+		transform: translateX(0%);
+	}
+	100% {
+		transform: translateX(-33.333%);
+	}
+}
+
+.animate-marquee {
+	animation: marquee 32s linear infinite;
+	will-change: transform;
+}
+

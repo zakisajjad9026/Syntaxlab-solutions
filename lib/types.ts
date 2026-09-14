@@ -189,6 +189,28 @@ export interface FooterGroup {
   links: NavigationItem[];
 }
 
+export interface TechItem {
+  id: string;
+  name: string;
+  category: string;
+  badge: string;
+  iconName?: string;
+  highlight?: string;
+}
+
+export interface TestimonialItem {
+  id: string;
+  client: string;
+  role: string;
+  company: string;
+  avatarText: string;
+  rating: number;
+  metric: string;
+  metricLabel: string;
+  quote: string;
+  projectRef: string;
+}
+
 export interface SiteConfig {
   brand: {
     name: string;
@@ -200,6 +222,8 @@ export interface SiteConfig {
   };
   navigation: NavigationItem[];
   hero: HeroConfig;
+  techStack?: TechItem[];
+  testimonials?: TestimonialItem[];
   friction: FrictionStep[];
   manifesto: StudioManifestoConfig;
   capabilities: CapabilityGroup[];
@@ -227,3 +251,4 @@ export interface SiteConfig {
     security: string;
   };
 }
+

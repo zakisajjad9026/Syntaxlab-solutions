@@ -18,7 +18,7 @@ export function BusinessFrictionSection({ steps }: { steps: FrictionStep[] }) {
         </SectionReveal>
 
         <StaggerGroup>
-          <div className="mt-14 grid grid-cols-1 border-y border-border divide-y divide-border md:grid-cols-4 md:divide-x md:divide-y-0">
+          <div className="mt-14 grid grid-cols-1 border-y border-border divide-y divide-border md:grid-cols-4 md:divide-x md:divide-y-0 items-stretch auto-rows-fr">
             {steps.map((step) => (
               <article className="group flex min-h-[300px] flex-col justify-between p-6 md:p-8 transition-colors duration-200 hover:bg-surface-elevated/60" key={step.id}>
                 <div>

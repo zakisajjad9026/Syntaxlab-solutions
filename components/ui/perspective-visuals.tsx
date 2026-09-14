@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { motion, useReducedMotion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 interface VisualProps {
   className?: string;
@@ -14,7 +15,7 @@ export function LaptopBrowserVisual({ className = "", isHovered = false }: Visua
   const effectiveHovered = shouldReduceMotion ? false : isHovered;
 
   return (
-    <div className={`relative flex items-center justify-center pointer-events-none select-none ${className}`}>
+    <div className={cn("flex items-center justify-center pointer-events-none select-none", className)}>
       <motion.svg
         width="760"
         height="500"
@@ -502,7 +503,7 @@ export function CommerceCheckoutVisual({ className = "", isHovered = false }: Vi
   const effectiveHovered = shouldReduceMotion ? false : isHovered;
 
   return (
-    <div className={`flex items-center justify-center pointer-events-none select-none ${className}`}>
+    <div className={cn("flex items-center justify-center pointer-events-none select-none", className)}>
       <motion.svg
         width="220"
         height="180"
@@ -710,7 +711,7 @@ export function DashboardAnalyticsVisual({ className = "", isHovered = false }: 
   const effectiveHovered = shouldReduceMotion ? false : isHovered;
 
   return (
-    <div className={`flex items-center justify-center pointer-events-none select-none ${className}`}>
+    <div className={cn("flex items-center justify-center pointer-events-none select-none", className)}>
       <motion.svg
         width="220"
         height="180"
@@ -914,7 +915,7 @@ export function CampaignConversionVisual({ className = "", isHovered = false }: 
   const effectiveHovered = shouldReduceMotion ? false : isHovered;
 
   return (
-    <div className={`flex items-center justify-center pointer-events-none select-none ${className}`}>
+    <div className={cn("flex items-center justify-center pointer-events-none select-none", className)}>
       <motion.svg
         width="220"
         height="180"
@@ -1150,7 +1151,7 @@ export function ModernizationLayersVisual({ className = "", isHovered = false }:
   const effectiveHovered = shouldReduceMotion ? false : isHovered;
 
   return (
-    <div className={`flex items-center justify-center pointer-events-none select-none ${className}`}>
+    <div className={cn("flex items-center justify-center pointer-events-none select-none", className)}>
       <motion.svg
         width="220"
         height="180"
@@ -1354,7 +1355,7 @@ export function SupportShieldVisual({ className = "", isHovered = false }: Visua
   const effectiveHovered = shouldReduceMotion ? false : isHovered;
 
   return (
-    <div className={`flex items-center justify-center pointer-events-none select-none ${className}`}>
+    <div className={cn("flex items-center justify-center pointer-events-none select-none", className)}>
       <motion.svg
         width="220"
         height="180"

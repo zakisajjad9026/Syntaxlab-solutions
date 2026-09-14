@@ -34,19 +34,20 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
             </TechnicalLabel>
           </div>
 
-          {/* Interactive Project Showcase Grid: 2-column on desktop (>=1280px), 1-column on tablet and mobile */}
+          {/* Interactive Project Showcase Grid: Balanced 2-column grid with equal card ratios */}
           <div
-            className="mt-8 grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-7 xl:gap-8"
+            className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch auto-rows-fr"
             onMouseLeave={() => setHoveredIndex(null)}
           >
             {projects.map((project, idx) => (
-              <ProjectItem
-                key={project.id}
-                index={idx}
-                hoveredIndex={hoveredIndex}
-                onHover={setHoveredIndex}
-                {...project}
-              />
+              <div key={project.id} className="h-full">
+                <ProjectItem
+                  index={idx}
+                  hoveredIndex={hoveredIndex}
+                  onHover={setHoveredIndex}
+                  {...project}
+                />
+              </div>
             ))}
           </div>
         </SectionReveal>
@@ -78,10 +79,6 @@ export function FeaturedWorkSection({ projects }: { projects: FeaturedProject[] 
   const rawX = useTransform(scrollYProgress, [0.2, 0.8], [0, -32]);
   const horizontalX = shouldReduceMotion || !isDesktop ? 0 : rawX;
 
-  const primary = projects.find((project) => project.placement === "primary");
-  const secondary = projects.find((project) => project.placement === "secondary");
-  const lower = projects.filter((project) => project.placement === "lower");
-
   return (
     <section className="bg-background overflow-hidden" id="featured-work" ref={sectionRef}>
       <Container className="px-6 py-14 md:py-16 md:px-16">
@@ -99,86 +96,49 @@ export function FeaturedWorkSection({ projects }: { projects: FeaturedProject[] 
           </div>
         </SectionReveal>
 
-        <motion.div style={{ x: horizontalX }} className="mt-10 grid gap-6 lg:grid-cols-12 lg:gap-8">
-          {/* Primary Feature (7 cols on lg+) */}
-          {primary ? (
-            <ImageReveal className="lg:col-span-7">
-              <Card as="article" variant="interactive" padding="none" className="overflow-hidden p-4 md:p-5">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl">
-                  <ProjectVisual alt={primary.alt ?? primary.title} className="h-full w-full" image={primary.image ?? ""} priority />
-                  <div className="absolute left-3 top-3 z-10">
-                    <CardBadge>FEATURED</CardBadge>
+        {/* Uniform 2-Column Grid: Every card shares the exact same aspect ratio and dimensions */}
+        <motion.div style={{ x: horizontalX }} className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch auto-rows-fr">
+          {projects.map((project) => (
+            <ImageReveal className="h-full" key={project.id}>
+              <Card
+                as="article"
+                variant="interactive"
+                padding="none"
+                className="overflow-hidden p-4 md:p-5 h-full flex flex-col justify-between"
+              >
+                <div>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl">
+                    <ProjectVisual
+                      alt={project.alt ?? project.title}
+                      className="h-full w-full"
+                      image={project.image ?? ""}
+                      priority={project.placement === "primary"}
+                    />
+                    <div className="absolute left-3 top-3 z-10">
+                      <CardBadge>FEATURED</CardBadge>
+                    </div>
                   </div>
-                </div>
-                <div className="mt-4 flex items-center justify-between font-mono text-[11px]">
-                  <span className="text-muted-foreground uppercase tracking-wider text-[10px]">{primary.category.replace(/\/\/\s*/g, "• ")}</span>
-                  {primary.telemetryValue ? (
-                    <span className="font-semibold text-success">{primary.telemetryValue}</span>
-                  ) : null}
-                </div>
-                <h3 className="type-card-title mt-2 text-foreground transition-colors duration-200 group-hover:text-accent">{primary.title}</h3>
-                <p className="type-body-sm mt-1.5 text-muted-foreground">{primary.description}</p>
-                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-3.5 font-mono text-[11px]">
-                  <span className="text-muted-foreground text-[10px]">{primary.stackText ? primary.stackText.replace(/\/\/\s*/g, "• ") : ""}</span>
-                  <Link href="/contact" className="type-button inline-flex items-center gap-1.5 text-accent transition-all duration-200 group-hover:translate-x-1">
-                    <span>{primary.actionText ?? "VIEW CASE STUDY →"}</span>
-                    <IconArrowRight className="size-3.5" />
-                  </Link>
-                </div>
-              </Card>
-            </ImageReveal>
-          ) : null}
-
-          {/* Secondary Feature (5 cols on lg+) */}
-          {secondary ? (
-            <ImageReveal className="lg:col-span-5">
-              <Card as="article" variant="interactive" padding="none" className="overflow-hidden p-4 md:p-5">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl">
-                  <ProjectVisual alt={secondary.alt ?? secondary.title} className="h-full w-full" image={secondary.image ?? ""} />
-                  <div className="absolute left-3 top-3 z-10">
-                    <CardBadge>FEATURED</CardBadge>
+                  <div className="mt-4 flex items-center justify-between font-mono text-[11px]">
+                    <span className="text-muted-foreground uppercase tracking-wider text-[10px]">
+                      {project.category.replace(/\/\/\s*/g, "• ")}
+                    </span>
+                    {project.telemetryValue ? (
+                      <span className="font-semibold text-success">{project.telemetryValue}</span>
+                    ) : null}
                   </div>
+                  <h3 className="type-card-title mt-2 text-foreground transition-colors duration-200 group-hover:text-accent">
+                    {project.title}
+                  </h3>
+                  <p className="type-body-sm mt-1.5 text-muted-foreground">{project.description}</p>
                 </div>
-                <div className="mt-4 flex items-center justify-between font-mono text-[11px]">
-                  <span className="text-muted-foreground uppercase tracking-wider text-[10px]">{secondary.category.replace(/\/\/\s*/g, "• ")}</span>
-                  {secondary.telemetryValue ? (
-                    <span className="font-semibold text-success">{secondary.telemetryValue}</span>
-                  ) : null}
-                </div>
-                <h3 className="type-card-title mt-2 text-foreground transition-colors duration-200 group-hover:text-accent">{secondary.title}</h3>
-                <p className="type-body-sm mt-1.5 text-muted-foreground">{secondary.description}</p>
                 <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-3.5 font-mono text-[11px]">
-                  <span className="text-muted-foreground text-[10px]">{secondary.stackText ? secondary.stackText.replace(/\/\/\s*/g, "• ") : ""}</span>
-                  <Link href="/contact" className="type-button inline-flex items-center gap-1.5 text-accent transition-all duration-200 group-hover:translate-x-1">
-                    <span>{secondary.actionText ?? "VIEW CASE STUDY →"}</span>
-                    <IconArrowRight className="size-3.5" />
-                  </Link>
-                </div>
-              </Card>
-            </ImageReveal>
-          ) : null}
-
-          {/* Lower Features (6 cols each on lg+) */}
-          {lower.map((project) => (
-            <ImageReveal className="lg:col-span-6" key={project.id}>
-              <Card as="article" variant="interactive" padding="none" className="overflow-hidden p-4 md:p-5">
-                <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl">
-                  <ProjectVisual alt={project.alt ?? project.title} className="h-full w-full" image={project.image ?? ""} />
-                  <div className="absolute left-3 top-3 z-10">
-                    <CardBadge>FEATURED</CardBadge>
-                  </div>
-                </div>
-                <div className="mt-4 flex items-center justify-between font-mono text-[11px]">
-                  <span className="text-muted-foreground uppercase tracking-wider text-[10px]">{project.category.replace(/\/\/\s*/g, "• ")}</span>
-                  {project.telemetryValue ? (
-                    <span className="font-semibold text-success">{project.telemetryValue}</span>
-                  ) : null}
-                </div>
-                <h3 className="type-card-title mt-2 text-foreground transition-colors duration-200 group-hover:text-accent">{project.title}</h3>
-                <p className="type-body-sm mt-1.5 text-muted-foreground">{project.description}</p>
-                <div className="mt-5 flex flex-wrap items-center justify-between gap-3 border-t border-border/60 pt-3.5 font-mono text-[11px]">
-                  <span className="text-muted-foreground text-[10px]">{project.stackText ? project.stackText.replace(/\/\/\s*/g, "• ") : ""}</span>
-                  <Link href="/contact" className="type-button inline-flex items-center gap-1.5 text-accent transition-all duration-200 group-hover:translate-x-1">
+                  <span className="text-muted-foreground text-[10px]">
+                    {project.stackText ? project.stackText.replace(/\/\/\s*/g, "• ") : ""}
+                  </span>
+                  <Link
+                    href="/contact"
+                    className="type-button inline-flex items-center gap-1.5 text-accent transition-all duration-200 group-hover:translate-x-1"
+                  >
                     <span>{project.actionText ?? "VIEW CASE STUDY →"}</span>
                     <IconArrowRight className="size-3.5" />
                   </Link>
@@ -194,4 +154,5 @@ export function FeaturedWorkSection({ projects }: { projects: FeaturedProject[] 
     </section>
   );
 }
+
 

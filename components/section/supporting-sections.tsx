@@ -93,15 +93,21 @@ export function BusinessesSection({ benchmark }: { benchmark: BenchmarkConfig })
                 </div>
               </Card>
 
-              {/* Client Testimonial Card from Pass 11 Reference */}
-              <TestimonialCard
-                quote="SyntaxLab transformed our online presence. The website is fast, beautiful, and exactly what we needed."
-                author="Marco Rinaldi"
-                role="Owner"
-                company="Osteria Riva Milano"
-                initials="OR"
-                className="mt-6"
-              />
+              {/* Engineering Guarantee SLA Badge */}
+              <div className="mt-6 rounded-xl border border-accent/40 bg-accent/5 p-4.5 font-mono text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 backdrop-blur-xs">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="size-2 rounded-full bg-success inline-block" />
+                    <span className="font-semibold text-accent tracking-wider uppercase text-[11px]">99.9% UPTIME & SPEED SLA</span>
+                  </div>
+                  <p className="text-muted-foreground text-[11px] mt-1 font-sans">
+                    Every production platform is guaranteed to achieve sub-second load speeds and strict security hardening.
+                  </p>
+                </div>
+                <span className="shrink-0 rounded-md bg-success/15 px-3 py-1 font-mono text-[11px] font-bold text-success border border-success/30">
+                  GUARANTEED
+                </span>
+              </div>
             </div>
           </div>
         </SectionReveal>
@@ -148,12 +154,12 @@ export function ProcessSection({ steps }: { steps: ProcessStepData[] }) {
 
           {/* 4 Process Cards connected horizontally with copper square pips */}
           <StaggerGroup>
-            <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4 relative">
+            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 relative items-stretch auto-rows-fr">
               {steps.map((step, idx) => {
                 const Icon = stepIcons[idx] ?? IconCode;
                 return (
                   <div key={step.id} className="relative flex">
-                    <article className="group flex flex-col justify-between w-full rounded-2xl border border-border/80 bg-surface/85 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.03)] transition-all duration-200 hover:-translate-y-1 hover:border-accent/60 hover:bg-surface-elevated/95 hover:shadow-[0_12px_32px_rgba(196,114,68,0.12)]">
+                    <article className="group flex flex-col justify-between w-full h-full rounded-2xl border border-border/80 bg-surface/85 p-6 shadow-[0_2px_10px_rgba(0,0,0,0.03)] transition-all duration-200 hover:-translate-y-1 hover:border-accent/60 hover:bg-surface-elevated/95 hover:shadow-[0_12px_32px_rgba(196,114,68,0.12)]">
                       <div>
                         {/* Top: Icon Box & Step Number */}
                         <div className="flex items-center justify-between">
@@ -195,7 +201,7 @@ export function ProcessSection({ steps }: { steps: ProcessStepData[] }) {
                     {/* Horizontal Connector Line + Copper Square Pip (Desktop only, between adjacent cards) */}
                     {idx < 3 && (
                       <div
-                        className="hidden lg:flex absolute -right-5 top-1/2 -translate-y-1/2 translate-x-1/2 items-center justify-center w-5 z-10 pointer-events-none"
+                        className="hidden lg:flex absolute -right-[13px] top-1/2 -translate-y-1/2 translate-x-1/2 items-center justify-center w-[26px] z-10 pointer-events-none"
                         aria-hidden="true"
                       >
                         <div className="h-px w-full bg-border" />
@@ -236,7 +242,7 @@ export function EngagementSection({ plans }: { plans: PricingPlan[] }) {
             </TechnicalLabel>
           </div>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-3 lg:gap-8">
+          <div className="mt-10 grid gap-6 md:grid-cols-3 lg:gap-8 items-stretch auto-rows-fr">
             {plans.map((plan) => (
               <PricingCard key={plan.id} {...plan} />
             ))}

@@ -19,7 +19,7 @@ export function PricingCard({
       variant={featured ? "featured" : "interactive"}
       padding="lg"
       className={cn(
-        "flex flex-col justify-between transition-all duration-300 hover:border-accent/60",
+        "flex flex-col justify-between h-full transition-all duration-300 hover:border-accent/60",
         featured && "border-accent bg-surface-elevated/95 shadow-[0_12px_40px_rgba(196,114,68,0.18)]"
       )}
     >

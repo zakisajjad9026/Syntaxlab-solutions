@@ -92,19 +92,19 @@ export function HeroSection({ hero }: { hero: HeroConfig }) {
           <HeroOrbVisual className="h-full w-full" />
         </div>
 
-        <div className="relative z-10 mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-10 px-6 pt-6 pb-12 sm:pt-8 sm:pb-14 md:px-12 md:pt-10 md:pb-16 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pt-12 lg:pb-20">
+        <div className="relative z-10 mx-auto grid max-w-[1280px] grid-cols-1 items-center gap-10 px-6 pt-10 pb-14 sm:pt-14 sm:pb-16 md:px-12 md:pt-16 md:pb-20 lg:grid-cols-12 lg:gap-12 lg:px-16 lg:pt-20 lg:pb-24">
           {/* Left Column — Editorial Hero Content */}
           <div className="flex flex-col justify-between lg:col-span-7 lg:pr-4">
             <div className="max-w-2xl">
-              {/* Eyebrow Label */}
+              {/* Eyebrow Badge */}
               <motion.div
                 initial={shouldReduceMotion ? false : "hidden"}
                 animate="visible"
                 variants={heroEyebrowVariants}
-                className="flex items-center gap-2"
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/30 bg-accent/10 backdrop-blur-sm"
               >
                 <span className="size-1.5 rounded-full bg-accent animate-pulse inline-block" />
-                <TechnicalLabel className="text-accent">
+                <TechnicalLabel className="text-accent tracking-widest text-[11px] font-semibold">
                   {hero.eyebrow ?? "WEB DESIGN & SOFTWARE DEVELOPMENT"}
                 </TechnicalLabel>
               </motion.div>
@@ -114,11 +114,11 @@ export function HeroSection({ hero }: { hero: HeroConfig }) {
                 initial={shouldReduceMotion ? false : "hidden"}
                 animate="visible"
                 variants={heroHeadlineVariants}
-                className="type-hero mt-3.5 sm:mt-4 max-w-2xl text-foreground"
+                className="type-hero mt-4 sm:mt-5 max-w-2xl text-foreground"
               >
                 YOUR BUSINESS.<br className="hidden sm:inline" />{" "}
-                <span className="text-accent">BUILT FOR THE</span><br className="hidden sm:inline" />{" "}
-                <span className="text-accent">MODERN WEB.</span>
+                <span className="bg-gradient-to-r from-[#d87c48] via-[#f0a672] to-[#c47244] bg-clip-text text-transparent">BUILT FOR THE</span><br className="hidden sm:inline" />{" "}
+                <span className="bg-gradient-to-r from-[#d87c48] via-[#f0a672] to-[#c47244] bg-clip-text text-transparent">MODERN WEB.</span>
               </motion.h1>
 
               {/* Supporting Description */}
@@ -126,7 +126,7 @@ export function HeroSection({ hero }: { hero: HeroConfig }) {
                 initial={shouldReduceMotion ? false : "hidden"}
                 animate="visible"
                 variants={heroParagraphVariants}
-                className="type-body mt-4 sm:mt-5 max-w-xl text-muted-foreground"
+                className="type-body mt-4 sm:mt-5 max-w-xl text-muted-foreground leading-relaxed"
               >
                 {hero.description}
               </motion.p>

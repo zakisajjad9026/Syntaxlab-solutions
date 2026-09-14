@@ -240,6 +240,14 @@ export function Navigation({ items }: NavigationProps) {
           </span>
         </Link>
 
+        {/* Live Agency Availability Pill */}
+        <div className="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full border border-border/80 bg-surface/80 text-[11px] font-mono text-muted-foreground shadow-xs">
+          <span className="size-1.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
+          <span className="text-emerald-400 font-semibold tracking-wider uppercase text-[10px]">Available</span>
+          <span className="text-border/80">|</span>
+          <span className="text-[10.5px]">Q2/Q3 Projects</span>
+        </div>
+
         {/* Desktop Navigation Links with Smooth Shared Hover Surface */}
         <nav
           className="hidden items-center gap-1.5 lg:flex relative"
